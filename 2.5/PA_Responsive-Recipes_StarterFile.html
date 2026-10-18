@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--
+        Author: Jessica Hussain
+        Date: 10/18/2026
+        Purpose: To create a responsive recipe book for potions using HTML and CSS.
+    -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="PA_Responsive-Recipes_StarterFile.css">
+
+    <title>Potion Recipe Book</title>
+</head>
+
+<body>
+    <header>
+        <h1>Potion Recipe Book</h1>
+        <p>A collection of magical brews and their ingredients</p>
+    </header>
+    
+    <main>
+        <section class="potion-container" aria-label="Potion recipes">
+    
+            <!-- 
+                POTION CARD:
+                - Each <article> represents ONE potion
+                - You may DUPLICATE this entire article then UPDATE the contents to add more potions
+                - Keep structure consistent for all potions
+            -->
+            <article class="potion">
+                <header>
+                    <!-- POTION NAME -->
+                    <h2>Healing Potion</h2>
+                </header>
+    
+                <!-- POTION DESCRIPTION -->
+                <p>Restores a moderate amount of health.</p>
+    
+                <!-- INGREDIENT TABLE -->
+                <section>
+                    <h3>Ingredients</h3>
+                    <table>
+                        <caption>Healing Potion Ingredients</caption>
+                        
+                        <thead>
+                            <tr>
+                                <th scope="col">Ingredient</th>
+                                <th scope="col">Quantity</th>
+                            </tr>
+                        </thead>
+    
+                        <tbody>
+                            <tr>
+                                <td>Red Herb</td>
+                                <td>2 dried specimens</td>
+                            </tr>
+                            <tr>
+                                <td>Crystal Water</td>
+                                <td>1 vial</td>
+                            </tr>
+                            <tr>
+                                <td>Glow Mushroom</td>
+                                <td>3 caps without stems</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+            </article>
+    
+            <!-- POTION CARD -->
+            <article class="potion">
+    
+                <header>
+                    <h2>Invisibility Potion</h2>
+                </header>
+    
+                <p>Grants temporary invisibility.</p>
+    
+                <section>
+                    <h3>Ingredients</h3>
+    
+                    <table>
+                        <caption>Invisibility Potion Ingredients</caption>
+    
+                        <thead>
+                            <tr>
+                                <th scope="col">Ingredient</th>
+                                <th scope="col">Quantity</th>
+                            </tr>
+                        </thead>
+    
+                        <tbody>
+                            <tr>
+                                <td>Ghost Leaf</td>
+                                <td>4 leaves</td>
+                            </tr>
+                            <tr>
+                                <td>Shadow Essence</td>
+                                <td>2 drops</td>
+                            </tr>
+                            <tr>
+                                <td>Nightshade</td>
+                                <td>1 plant with roots</td>
+                            </tr>
+                        </tbody>
+                    </table>    
+                </section>
+            </article>
+
+            <!-- POTION CARD -->
+            <article class="potion">
+    
+                <header>
+                    <h2>Giant Strength Potion</h2>
+                </header>
+    
+                <p>Grants temporary increase in physical strength.</p>
+    
+                <section>
+                    <h3>Ingredients</h3>
+    
+                    <table>
+                        <caption>Giant Strength Potion Ingredients</caption>
+    
+                        <thead>
+                            <tr>
+                                <th scope="col">Ingredient</th>
+                                <th scope="col">Quantity</th>
+                            </tr>
+                        </thead>
+    
+                        <tbody>
+                            <tr>
+                                <td>Hill Giant Toenail</td>
+                                <td>1 crushed clipping</td>
+                            </tr>
+                            <tr>
+                                <td>Ogre Root</td>
+                                <td>3 thick slices</td>
+                            </tr>
+                            <tr>
+                                <td>Mountain Spring Water</td>
+                                <td>1 flask</td>
+                            </tr>
+                        </tbody>
+                    </table>    
+                </section>
+            </article>
+
+            <!-- POTION CARD -->
+            <article class="potion">
+    
+                <header>
+                    <h2>Water Breathing Potion</h2>
+                </header>
+    
+                <p>Grants temporary ability to breathe underwater.</p>
+    
+                <section>
+                    <h3>Ingredients</h3>
+    
+                    <table>
+                        <caption>Water Breathing Potion Ingredients</caption>
+    
+                        <thead>
+                            <tr>
+                                <th scope="col">Ingredient</th>
+                                <th scope="col">Quantity</th>
+                            </tr>
+                        </thead>
+    
+                        <tbody>
+                            <tr>
+                                <td>Merfolk Kelp</td>
+                                <td>2 strands</td>
+                            </tr>
+                            <tr>
+                                <td>Crushed Pearl</td>
+                                <td>1 teaspoon</td>
+                            </tr>
+                            <tr>
+                                <td>Enchanted Seawater</td>
+                                <td>1 vial</td>
+                            </tr>
+                        </tbody>
+                    </table>    
+                </section>
+            </article>
+
+            <!-- POTION CARD -->
+            <article class="potion">
+    
+                <header>
+                    <h2>Mind Reading Pottion</h2>
+                </header>
+    
+                <p>Grants temporary ability to read minds.</p>
+    
+                <section>
+                    <h3>Ingredients</h3>
+    
+                    <table>
+                        <caption>Mind Reading Potion Ingredients</caption>
+    
+                        <thead>
+                            <tr>
+                                <th scope="col">Ingredient</th>
+                                <th scope="col">Quantity</th>
+                            </tr>
+                        </thead>
+    
+                        <tbody>
+                            <tr>
+                                <td>Mind Flayer Mucus</td>
+                                <td>3 drops</td>
+                            </tr>
+                            <tr>
+                                <td>Silver Lotus Petals</td>
+                                <td>4 petals</td>
+                            </tr>
+                            <tr>
+                                <td>Dream Crystal Dust</td>
+                                <td>1 pinch</td>
+                            </tr>
+                        </tbody>
+                    </table>    
+                </section>
+            </article>
+            
+        </section>
+    </main>
+    
+    <footer>
+        <p>Responsive Recipes Vol. 2026 
+        <p>Potion Archivist: jesbre3155</p>
+    </footer>
+
+</body>
+</html>
