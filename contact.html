@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--
+Name: Jessica Hussain
+Last Updated: 11/06/2026
+Project: Briar & Bone
+--> 
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Contact Us</title>
+  <link rel="stylesheet" href="CSS/stylesheet.css">
+</head>
+
+<body>
+   <!--Header-->
+    <header class="site-header">
+        <div class="logo">
+            <h1> Briar &amp; Bone</h1>
+            <p>Miniatures</p>
+        </div>
+
+        <!--Navigation-->
+        <nav aria-label="Main navigation">
+
+            <ul>
+                <li>
+                    <a href="index.html">Home</a>
+                </li>
+                <li>
+                    <a href="shop.html">Shop</a>
+                </li>         
+                <li>
+                    <a href="bag.html">Bag</a>
+                </li>
+                <li>
+                    <a href="network.html">Network Test</a>
+                </li>
+            </ul>
+
+        </nav>
+    </header>
+
+    <main>
+        <section class="contact">
+            <h1>Contact Us</h1>
+            <p>Have a question? Fill out the form below.</p>
+
+            <form class="contact-form">
+                <label for="full-name">Full Name</label>
+                <input
+                type="text"
+                id="full-name"
+                name="fullName"
+                >
+
+                <label for="email">Email Address (required)</label>
+                <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                >
+
+                <label for="subject">Subject</label>
+                <input
+                type="text"
+                id="subject"
+                name="subject"
+                >
+
+                <label for="message">Message (required)</label>
+                <textarea
+                id="message"
+                name="message"
+                rows="6"
+                required
+                ></textarea>
+
+                <button type="submit">Send Message</button>
+            </form>
+            <p id="contact-message" aria-live="polite"></p>
+        </section>
+    </main>
+
+  <!--Footer-->
+    <footer class="site-footer">
+
+        <a href="contact.html" class="contact-link">Contact Us</a>
+
+        <p>SDC260 Webpage Project</p>
+        <p>jesbre3155</p>
+        <p>Not real products. Concept only.</p>
+    </footer>
+
+    <script>
+        const contactForm = document.querySelector(".contact-form");
+        const emailField = document.querySelector("#email");
+        const messageField = document.querySelector("#message");
+        const contactMessage = document.querySelector("#contact-message");
+
+        contactForm.noValidate = true;
+
+        function showContactError(field, message) {
+            field.setCustomValidity(message);
+            field.reportValidity();
+            field.focus();
+            return false;
+        }
+
+        function validateContactForm() {
+            emailField.setCustomValidity("");
+            messageField.setCustomValidity("");
+
+            emailField.value = emailField.value.trim();
+
+            if (emailField.value === "") {
+            return showContactError(
+                emailField,
+                "Please enter your email address."
+            );
+            }
+
+            if (emailField.validity.typeMismatch) {
+            return showContactError(
+                emailField,
+                "Please enter a valid email address."
+            );
+            }
+
+            if (messageField.value.trim() === "") {
+            return showContactError(
+                messageField,
+                "Please enter a message."
+            );
+            }
+
+            return true;
+        }
+
+        contactForm.addEventListener("submit", function(event) {
+            event.preventDefault();
+            contactMessage.textContent = "";
+
+            if (!validateContactForm()) {
+            return;
+            }
+
+            contactMessage.textContent =
+            "Your message has been sent. (Not really)";
+
+            contactForm.reset();
+        });
+
+        const contactFields = contactForm.querySelectorAll("input, textarea");
+
+        for (const field of contactFields) {
+            field.addEventListener("input", function() {
+            field.setCustomValidity("");
+            contactMessage.textContent = "";
+            });
+        }
+    </script>
+
+</body>
+</html>

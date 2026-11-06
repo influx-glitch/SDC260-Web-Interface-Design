@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--
+Name: Jessica Hussain
+Last Updated: 11/06/2026
+Project: Briar & Bone
+-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="CSS/stylesheet.css">
+    <script src="JS/product-data.js"></script>
+    <script src="JS/cart.js"></script>
+
+    <title>Checkout</title>
+</head>
+
+<body>
+    <!--Header-->
+    <header class="site-header">
+        <div class="logo">
+            <h1> Briar &amp; Bone</h1>
+            <p>Miniatures</p>
+        </div>
+
+        <!--Navigation-->
+        <nav aria-label="Main navigation">
+
+            <ul>
+                <li>
+                    <a href="index.html">Home</a>
+                </li>
+                <li>
+                    <a href="shop.html">Shop</a>
+                </li>         
+                <li>
+                    <a href="bag.html">Bag</a>
+                </li>
+                <li>
+                    <a href="network.html">Network Test</a>
+                </li>
+            </ul>
+
+        </nav>
+    </header>
+
+    <main>
+        <section class="checkout">
+        <h1>Checkout</h1>
+
+        <p>Do not enter real payment information.</p>
+
+        <form class="shipping-form">
+            <h2>Shipping Information</h2>
+            <label for="shipping-name">Full Name (required)</label>
+            <input
+                type="text"
+                id="shipping-name"
+                name="shippingName"
+                required
+  >
+
+            <label for="street-address">Street Address (required)</label>
+            <input
+                type="text"
+                id="street-address"
+                name="streetAddress"
+                required
+  >
+
+            <label for="city">City (required)</label>
+            <input
+                type="text"
+                id="city"
+                name="city"
+                required
+            >
+
+            <label for="state">State (required)</label>
+            <input
+                type="text"
+                id="state"
+                name="state"
+                required
+            >
+
+            <label for="zip-code">ZIP Code (required)</label>
+            <input
+                type="text"
+                id="zip-code"
+                name="zipCode"
+                inputmode="numeric"
+                required
+            >
+
+            <label for="phone-number">Phone Number (required)</label>
+            <input
+                type="tel"
+                id="phone-number"
+                name="phoneNumber"
+                required
+            >
+        </form>
+
+        <form class="checkout-form">
+            <h2>Payment Information</h2>
+            <label for="cardholder-name">
+            Cardholder Name (required)
+            </label>
+            <input
+                type="text"
+                id="cardholder-name"
+                name="cardholderName"
+                required
+                >
+
+            <label for="card-number">
+            Credit Card Number (required)
+            </label>
+            <input
+                type="text"
+                id="card-number"
+                name="cardNumber"
+                inputmode="numeric"
+                required
+                >
+
+            <label for="expiration-date">
+            Expiration Date (required)
+            </label>
+            <input
+                type="text"
+                id="expiration-date"
+                name="expirationDate"
+                placeholder="MM/YY"
+                required
+                >
+
+            <label for="security-code">
+            Security Code (required)
+            </label>
+            <input
+                type="text"
+                id="security-code"
+                name="securityCode"
+                inputmode="numeric"
+                maxlength="4"
+                required
+            >
+
+            <label for="coupon-code">Coupon Code</label>
+            <input
+                type="text"
+                id="coupon-code"
+                name="couponCode"
+            >
+
+            <button type="button" id="apply-coupon">Apply Coupon</button>
+
+            <p id="coupon-message" aria-live="polite"></p>
+
+            <h3>Order Summary</h3>
+            <p>Subtotal reflects the items saved in your shopping bag.</p>
+
+            <p>Subtotal: $<span id="order-subtotal"></span></p>
+            <p>Discount: $<span id="order-discount"></span></p>
+            <p>Total: $<span id="order-total"></span></p>
+
+            <button type="submit">Place Order</button>
+        </form>
+
+        <p id="checkout-message" role ="status"></p>
+
+         <section
+            id="order-confirmation"
+            hidden
+            aria-labelledby="confirmation-heading"
+        >
+            <h2 id="confirmation-heading" tabindex="-1">
+                Demo Order Confirmation
+            </h2>
+
+            <p>
+                No payment was processed. This is a demonstration order.
+            </p>
+
+            <ul id="confirmation-items"></ul>
+
+            <p>
+                Subtotal: $<span id="confirmation-subtotal"></span>
+            </p>
+            <p>
+                Discount: $<span id="confirmation-discount"></span>
+            </p>
+            <p>
+                Total: $<span id="confirmation-total"></span>
+            </p>
+
+            <a href="shop.html">Continue Shopping</a>
+        </section>
+    </section>
+        
+    </main>
+
+    <!--Footer-->
+    <footer class="site-footer">
+        <a href="contact.html" class="contact-link">Contact Us</a>
+
+        <p>SDC260 Webpage Project</p>
+        <p>jesbre3155</p>
+        <p>Not real products. Concept only.</p>
+    </footer>
+
+    <script>
+        const shippingForm = document.querySelector(".shipping-form");
+        const checkoutForm = document.querySelector(".checkout-form");
+        const checkoutMessage = document.querySelector("#checkout-message");
+
+        //JavaScript run the validation when Place Order is clicked.
+        shippingForm.noValidate = true;
+        checkoutForm.noValidate = true;
+
+        function showError(field, message) {
+            field.setCustomValidity(message);
+            field.reportValidity();
+            field.focus();
+            return false;
+        }
+
+        function validateRequiredFields(form) {
+            const requiredFields = form.querySelectorAll("[required]");
+
+            for (const field of requiredFields) {
+            if (field.value.trim() === "") {
+                return showError(field, "Please complete this required field.");
+            }
+            }
+
+            return true;
+        }
+
+        function validateShipping() {
+            if (!validateRequiredFields(shippingForm)) {
+            return false;
+            }
+
+            const zipCode = document.querySelector("#zip-code");
+            const phoneNumber = document.querySelector("#phone-number");
+
+            // Accept 12345 or 12345-6789.
+            const zipPattern = /^\d{5}(-\d{4})?$/;
+
+            if (!zipPattern.test(zipCode.value.trim())) {
+            return showError(
+                zipCode,
+                "Enter a ZIP code such as 12345 or 12345-6789."
+            );
+            }
+
+            // Allow spaces, parentheses, periods, and hyphens.
+            const phoneText = phoneNumber.value.trim();
+            const phoneDigits = phoneText.replace(/\D/g, "");
+
+            const allowedPhoneCharacters = /^\+?[\d\s().-]+$/;
+            const validPhoneLength =
+            phoneDigits.length === 10 ||
+            (phoneDigits.length === 11 && phoneDigits.startsWith("1"));
+
+            if (!allowedPhoneCharacters.test(phoneText) || !validPhoneLength) {
+            return showError(
+                phoneNumber,
+                "Enter a 10-digit US phone number, optionally starting with 1."
+            );
+            }
+
+            return true;
+        }
+
+        function validatePayment() {
+            if (!validateRequiredFields(checkoutForm)) {
+            return false;
+            }
+
+            const cardNumber = document.querySelector("#card-number");
+            const expirationDate = document.querySelector("#expiration-date");
+            const securityCode = document.querySelector("#security-code");
+
+            // Allow digits with optional spaces or hyphens.
+            const cardText = cardNumber.value.trim();
+            const cardDigits = cardText.replace(/[\s-]/g, "");
+
+            if (!/^[\d\s-]+$/.test(cardText) ||
+                !/^\d{13,19}$/.test(cardDigits)) {
+            return showError(
+                cardNumber,
+                "For this demo, enter 13 to 19 digits."
+            );
+            }
+
+            const expirationText = expirationDate.value.trim();
+
+            if (!/^(0[1-9]|1[0-2])\/\d{2}$/.test(expirationText)) {
+            return showError(
+                expirationDate,
+                "Enter the expiration date as MM/YY."
+            );
+            }
+
+            const dateParts = expirationText.split("/");
+            const expirationMonth = Number(dateParts[0]);
+            const expirationYear = 2000 + Number(dateParts[1]);
+
+            const today = new Date();
+            const currentMonth = today.getMonth() + 1;
+            const currentYear = today.getFullYear();
+
+            if (
+            expirationYear < currentYear ||
+            (expirationYear === currentYear &&
+            expirationMonth < currentMonth)
+            ) {
+            return showError(
+                expirationDate,
+                "Enter an expiration date that has not passed."
+            );
+            }
+
+            if (!/^\d{3,4}$/.test(securityCode.value.trim())) {
+            return showError(
+                securityCode,
+                "Enter a 3- or 4-digit security code."
+            );
+            }
+
+            return true;
+        }
+
+        // Clears error messages when the user edits a field.
+        const allInputs = document.querySelectorAll(
+            ".shipping-form input, .checkout-form input"
+        );
+
+        for (const input of allInputs) {
+            input.addEventListener("input", function() {
+            input.setCustomValidity("");
+            checkoutMessage.textContent = "";
+            });
+        }
+
+        checkoutForm.addEventListener("submit", function(event) {
+            event.preventDefault();
+            checkoutMessage.textContent = "";
+
+            const cart = getCart();
+
+    // Stop checkout if there are no items in the saved bag.
+    if (cart.length === 0) {
+        checkoutMessage.textContent =
+            "Your bag is empty. Add an item before placing an order.";
+        return;
+    }
+
+    // Refresh inventory before checking the saved bag.
+    loadSavedInventory();
+
+    // Check that every item still exists and has enough stock.
+    for (const item of cart) {
+        const product = products.find(function (catalogProduct) {
+            return catalogProduct.id === item.id;
+        });
+
+        if (!product) {
+            checkoutMessage.textContent =
+                item.name +
+                " is no longer available. Please remove it from your bag.";
+            return;
+        }
+
+        if (item.quantity > product.stock) {
+            checkoutMessage.textContent =
+                "Only " + product.stock + " units of " +
+                product.name +
+                " remain. Please update your bag before checking out.";
+            return;
+        }
+        }
+
+            if (!validateShipping()) {
+            return;
+            }
+
+                if (!validatePayment()) {
+        return;
+    }
+
+    // Stop if the bag total changed after Checkout was opened.
+    if (getCartSubtotal() !== orderSubtotal) {
+        checkoutMessage.textContent =
+            "Your bag changed. Reload Checkout to review the updated total.";
+        return;
+    }
+
+    // Prepare the current and reduced inventory records.
+    const previousInventory = {};
+    const updatedInventory = {};
+
+    products.forEach(function (product) {
+        previousInventory[product.id] = product.stock;
+        updatedInventory[product.id] = product.stock;
+    });
+
+    cart.forEach(function (item) {
+        updatedInventory[item.id] -= item.quantity;
+    });
+
+    // Do not clear the bag unless inventory was saved.
+    if (!saveInventory(updatedInventory)) {
+        checkoutMessage.textContent =
+            "Inventory could not be saved. Your order was not completed.";
+        return;
+    }
+
+    // Clear the bag only after saving the reduced inventory.
+    if (!saveCart([])) {
+        const restored = saveInventory(previousInventory);
+
+        checkoutMessage.textContent = restored
+            ? "Your bag could not be cleared. Your order was not completed."
+            : "A storage error occurred. Inventory may have changed. Do not retry this order until storage is checked.";
+        return;
+    }
+
+    // Update the product records on this page.
+    products.forEach(function (product) {
+        product.stock = updatedInventory[product.id];
+    });
+
+    // Build the confirmation from the purchased items.
+    const confirmationItems =
+        document.getElementById("confirmation-items");
+
+    confirmationItems.replaceChildren();
+
+    cart.forEach(function (item) {
+        const lineTotalCents =
+            Math.round(item.price * 100) * item.quantity;
+
+        const listItem = document.createElement("li");
+
+        listItem.textContent =
+            item.name + " — Quantity: " + item.quantity +
+            " — $" + (lineTotalCents / 100).toFixed(2);
+
+        confirmationItems.appendChild(listItem);
+    });
+
+    document.getElementById("confirmation-subtotal").textContent =
+        orderSubtotal.toFixed(2);
+
+    document.getElementById("confirmation-discount").textContent =
+        appliedDiscount.toFixed(2);
+
+    document.getElementById("confirmation-total").textContent =
+        (orderSubtotal - appliedDiscount).toFixed(2);
+
+    // Remove entered information and hide the completed forms.
+    shippingForm.reset();
+    checkoutForm.reset();
+
+    shippingForm.hidden = true;
+    checkoutForm.hidden = true;
+
+    checkoutMessage.textContent =
+        "Your demo order is complete. Your bag is now empty.";
+
+    document.getElementById("order-confirmation").hidden = false;
+    document.getElementById("confirmation-heading").focus();
+    });
+
+        shippingForm.addEventListener("submit", function(event) {
+            event.preventDefault();
+        });
+    </script>
+    <script>
+        // Read the saved bag subtotal.
+        const orderSubtotal = getCartSubtotal();
+
+        //Track the discount applied to the order.
+        let appliedDiscount = 0;
+
+        const couponInput = document.querySelector("#coupon-code");
+        const couponMessage = document.querySelector("#coupon-message");
+        const applyCouponButton = document.querySelector("#apply-coupon");
+
+        const subtotalDisplay = document.querySelector("#order-subtotal");
+        const discountDisplay = document.querySelector("#order-discount");
+        const totalDisplay = document.querySelector("#order-total");
+
+        function updateOrderSummary(discountAmount) {
+            appliedDiscount = discountAmount;
+
+            const finalTotal = orderSubtotal - appliedDiscount;
+
+            subtotalDisplay.textContent = orderSubtotal.toFixed(2);
+            discountDisplay.textContent = appliedDiscount.toFixed(2);
+            totalDisplay.textContent = finalTotal.toFixed(2);
+        }
+
+        function applyCoupon() {
+            const enteredCode = couponInput.value.trim().toUpperCase();
+
+            let discountAmount = 0;
+
+            if (enteredCode === "") {
+            couponMessage.textContent =
+                "No coupon entered. No discount applied.";
+            } else if (enteredCode === "SAVE10") {
+            discountAmount = Math.round(orderSubtotal * 0.10 * 100) / 100;
+
+            couponMessage.textContent =
+                "SAVE10 applied! You received 10% off.";
+            } else {
+            couponMessage.textContent =
+                "That coupon code does not exist.";
+            }
+
+            updateOrderSummary(discountAmount);
+        }
+
+        applyCouponButton.addEventListener("click", applyCoupon);
+
+        // Remove the previous discount if the code is edited.
+        couponInput.addEventListener("input", function() {
+            couponMessage.textContent = "";
+            updateOrderSummary(0);
+        });
+
+        // Show the starting subtotal and total when the page loads.
+        updateOrderSummary(0);
+    </script>
+
+</body>
+</html>

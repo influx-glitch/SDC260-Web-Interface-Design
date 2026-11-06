@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--
+Name: Jessica Hussain
+Last Updated: 11/06/2026
+Project: Briar & Bone
+--> 
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="CSS/stylesheet.css">
+
+    <script src="JS/product-data.js" defer></script>
+    <script src="JS/cart.js" defer></script>
+    <script src="JS/bag.js" defer></script>
+
+    <title>Bag | Briar &amp; Bone</title>
+</head>
+
+<body>
+    <!--Store Header-->
+    <header class="site-header">
+          <div class="logo">
+            <h1> Briar &amp; Bone</h1>
+            <p>Miniatures</p>
+        </div>
+
+        <nav aria-label="Main navigation">
+            <ul>
+                <li>
+                    <a href="index.html">Home</a>
+                </li>
+                <li>
+                    <a href="shop.html">Shop</a>
+                </li>         
+                <li>
+                    <a href="bag.html" aria-current="page">Bag</a>
+                </li>
+                <li>
+                    <a href="network.html">Network Test</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Shopping Bag -->
+    <main>
+        <section class="shopping-bag" aria-labelledby="bag-heading">
+            <h2 id="bag-heading">Your Bag</h2>
+
+            <!-- JavaScript shows this only when the bag is empty. -->
+            <p id="empty-bag-message" hidden>
+                Your bag is currently empty.
+                <a href="shop.html">Explore the collection.</a>
+            </p>
+
+            <!-- JavaScript inserts the saved items here. -->
+            <div id="bag-items"></div>
+
+            <!-- JavaScript shows the summary when items are present. -->
+            <div id="bag-summary" class="bag-summary" hidden>
+                <p class="bag-total">
+                    Subtotal: $<span id="bag-subtotal">0.00</span>
+                </p>
+
+                <p>Any coupon discount will be applied at checkout.</p>
+
+                <button
+                    type="button"
+                    id="clear-bag-button"
+                    class="bag-remove-button"
+                >
+                    Clear Bag
+                </button>
+
+                <a href="checkout.html" class="checkout-link">
+                    Proceed to Checkout
+                </a>
+
+                <p id="bag-action-message" role="status"></p>
+            </div>
+
+            <noscript>
+                <p>Please enable JavaScript to view your shopping bag.</p>
+            </noscript>
+
+        </section>
+    </main>
+
+    <!--Footer-->
+    <footer class="site-footer">
+            <a href="contact.html" class="contact-link">Contact Us</a>
+
+            <p>SDC260 Webpage Project</p>
+            <p>jesbre3155</p>
+            <p>Not real products. Concept only.</p>
+    </footer>
+
+</body>
+</html>

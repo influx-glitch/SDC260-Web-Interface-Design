@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--
+Name: Jessica Hussain
+Last Updated: 11/06/2026
+Project: Briar & Bone
+--> 
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+      <link rel="stylesheet" href="CSS/stylesheet.css">
+
+    <script src="JS/product-data.js" defer></script>
+    <script src="JS/cart.js" defer></script>
+    <script src="JS/products.js" defer></script>
+
+    <title>Shop | Briar &amp; Bone</title>
+</head>
+
+<body>
+    <!--Store Header-->
+    <header class="site-header">
+          <div class="logo">
+            <h1> Briar &amp; Bone</h1>
+            <p>Miniatures</p>
+        </div>
+
+        <nav aria-label="Main navigation">
+            <ul>
+                <li>
+                    <a href="index.html">Home</a>
+                </li>
+                <li>
+                    <a href="shop.html" aria-current="page">Shop</a>
+                </li>         
+                <li>
+                    <a href="bag.html">Bag</a>
+                </li>
+                <li>
+                    <a href="network.html">Network Test</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Product Listings -->
+<main>
+       
+    <section class="shop-catalog" aria-labelledby="catalog-heading">
+        <h2 id="catalog-heading">Explore the Collection</h2>
+
+        <p>
+            Discover fantasy miniatures, painting supplies,
+            and kits for your next creative adventure.
+        </p>
+
+        <!-- Shows feedback when a product is added. -->
+        <p id="cart-feedback" class="cart-feedback" role="status"></p>
+
+        <!-- Shows a confirmation when an item is added to the bag. -->
+        <p id="cart-feedback" class="cart-feedback" role="status"></p>
+
+        <!-- JavaScript inserts the product cards here. -->
+        <div id="product-list" class="catalog-grid"></div>
+
+        <noscript>
+            <p>
+                Please enable JavaScript to view the product catalog.
+            </p>
+        </noscript>
+    </section>
+</main>
+
+    <!--Footer-->
+    <footer class="site-footer">
+            <a href="contact.html" class="contact-link">Contact Us</a>
+
+            <p>SDC260 Webpage Project</p>
+            <p>jesbre3155</p>
+            <p>Not real products. Concept only.</p>
+    </footer>
+
+</body>
+</html>

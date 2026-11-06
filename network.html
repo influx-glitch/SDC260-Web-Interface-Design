@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--
+    Name: Jessica Hussain
+    Last Updated: 11/06/2026
+    Project: Briar & Bone
+    Assignment: Project: Grand Opening
+    Purpose: Display connection information and the previous launch
+    time to support local testing of the website.
+    -->
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Briar &amp; Bone | Network Connection Test</title>
+
+    <link rel="stylesheet" href="CSS/stylesheet.css">
+    <script src="JS/network.js" defer></script>
+</head>
+
+<body>
+    <!-- Header and main navigation -->
+    <header class="site-header">
+        <div class="logo">
+            <h1>Briar &amp; Bone</h1>
+            <p>Miniatures</p>
+        </div>
+
+        <nav aria-label="Main navigation">
+            <ul>
+                <li>
+                    <a href="index.html">Home</a>
+                </li>
+                <li>
+                    <a href="shop.html">Shop</a>
+                </li>
+                <li>
+                    <a href="bag.html">Bag</a>
+                </li>
+                <li>
+                    <a href="network.html" aria-current="page">
+                        Network Test
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Connection information populated by JavaScript -->
+        <section class="network-test" aria-labelledby="network-heading">
+            <h2 id="network-heading">Network Connection Test</h2>
+
+            <p>
+                Connection information for the current Briar &amp; Bone
+                page.
+            </p>
+
+            <dl class="network-details">
+                <dt>Local Host Name</dt>
+                <dd id="network-host">Not checked yet</dd>
+
+                <dt>Current Communication Port</dt>
+                <dd id="network-port">Not checked yet</dd>
+
+                <dt>Current Transmission Protocol</dt>
+                <dd id="network-protocol">Not checked yet</dd>
+
+                <dt>Last Time Launched</dt>
+                <dd id="network-last-launch">Not checked yet</dd>
+            </dl>
+
+            <noscript>
+                <p>
+                    Enable JavaScript to display connection information.
+                </p>
+            </noscript>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <a href="contact.html" class="contact-link">Contact Us</a>
+
+        <p>SDC260 Webpage Project</p>
+        <p>jesbre3155</p>
+        <p>Not real products. Concept only.</p>
+    </footer>
+</body>
+</html>
